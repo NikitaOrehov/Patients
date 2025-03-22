@@ -1,0 +1,8 @@
+/home/kinro/project/Patients/build/CMakeFiles/edit_cache.dir
+/home/kinro/project/Patients/build/CMakeFiles/rebuild_cache.dir
+/home/kinro/project/Patients/build/Server/CMakeFiles/Server.dir
+/home/kinro/project/Patients/build/Server/CMakeFiles/edit_cache.dir
+/home/kinro/project/Patients/build/Server/CMakeFiles/rebuild_cache.dir
+/home/kinro/project/Patients/build/Client/CMakeFiles/Client.dir
+/home/kinro/project/Patients/build/Client/CMakeFiles/edit_cache.dir
+/home/kinro/project/Patients/build/Client/CMakeFiles/rebuild_cache.dir

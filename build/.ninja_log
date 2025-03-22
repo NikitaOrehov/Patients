@@ -1,0 +1,9 @@
+# ninja log v6
+4	1971	1742567194520562730	Client/CMakeFiles/Client.dir/main.cpp.o	93fd6da46a93a48b
+1971	2041	1742567196487579767	Client/Client	13acbe4152082b95
+3	1742	1742565417794818364	Server/CMakeFiles/Server.dir/DataBaseWorker.cpp.o	e37e67730cca2bc1
+2	1907	1742565417793818355	Server/CMakeFiles/Server.dir/main.cpp.o	1427b84cc12c8c9
+1907	2101	1742565419697834590	Server/Server	41ab55443790ac02
+4	2104	1742608187483934297	Server/CMakeFiles/Server.dir/main.cpp.o	1427b84cc12c8c9
+5	2199	1742608187484934281	Server/CMakeFiles/Server.dir/DataBaseWorker.cpp.o	e37e67730cca2bc1
+2199	2379	1742608189678900153	Server/Server	41ab55443790ac02
