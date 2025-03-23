@@ -1,20 +1,44 @@
 [
 {
   "directory": "/home/kinro/project/Patients/build",
-  "command": "/usr/bin/c++ -isystem /usr/include/postgresql -g -std=gnu++23 -o Server/CMakeFiles/Server.dir/main.cpp.o -c /home/kinro/project/Patients/Server/main.cpp",
-  "file": "/home/kinro/project/Patients/Server/main.cpp",
-  "output": "Server/CMakeFiles/Server.dir/main.cpp.o"
+  "command": "/usr/bin/c++ -I/home/kinro/project/Patients/Server/include -isystem /usr/include/postgresql -g -std=gnu++23 -o Server/CMakeFiles/Server.dir/src/main.cpp.o -c /home/kinro/project/Patients/Server/src/main.cpp",
+  "file": "/home/kinro/project/Patients/Server/src/main.cpp",
+  "output": "Server/CMakeFiles/Server.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/kinro/project/Patients/build",
-  "command": "/usr/bin/c++ -isystem /usr/include/postgresql -g -std=gnu++23 -o Server/CMakeFiles/Server.dir/DataBaseWorker.cpp.o -c /home/kinro/project/Patients/Server/DataBaseWorker.cpp",
-  "file": "/home/kinro/project/Patients/Server/DataBaseWorker.cpp",
-  "output": "Server/CMakeFiles/Server.dir/DataBaseWorker.cpp.o"
+  "command": "/usr/bin/c++ -I/home/kinro/project/Patients/Server/include -isystem /usr/include/postgresql -g -std=gnu++23 -o Server/CMakeFiles/Server.dir/src/DataBaseWorker.cpp.o -c /home/kinro/project/Patients/Server/src/DataBaseWorker.cpp",
+  "file": "/home/kinro/project/Patients/Server/src/DataBaseWorker.cpp",
+  "output": "Server/CMakeFiles/Server.dir/src/DataBaseWorker.cpp.o"
 },
 {
   "directory": "/home/kinro/project/Patients/build",
-  "command": "/usr/bin/c++ -g -std=gnu++23 -o Client/CMakeFiles/Client.dir/main.cpp.o -c /home/kinro/project/Patients/Client/main.cpp",
-  "file": "/home/kinro/project/Patients/Client/main.cpp",
-  "output": "Client/CMakeFiles/Client.dir/main.cpp.o"
+  "command": "/usr/bin/c++ -Dserver_src_EXPORTS -I/home/kinro/project/Patients/Server/include -g -std=gnu++23 -fPIC -o Server/src/CMakeFiles/server_src.dir/ConnectionHandler.cpp.o -c /home/kinro/project/Patients/Server/src/ConnectionHandler.cpp",
+  "file": "/home/kinro/project/Patients/Server/src/ConnectionHandler.cpp",
+  "output": "Server/src/CMakeFiles/server_src.dir/ConnectionHandler.cpp.o"
+},
+{
+  "directory": "/home/kinro/project/Patients/build",
+  "command": "/usr/bin/c++ -I/home/kinro/project/Patients/Application/include -I/home/kinro/project/Patients/Application/Client -I/home/kinro/project/Patients/Application/files -g -std=gnu++23 -o Application/CMakeFiles/Client.dir/src/main.cpp.o -c /home/kinro/project/Patients/Application/src/main.cpp",
+  "file": "/home/kinro/project/Patients/Application/src/main.cpp",
+  "output": "Application/CMakeFiles/Client.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/kinro/project/Patients/build",
+  "command": "/usr/bin/c++ -Dsrc_EXPORTS -I/home/kinro/project/Patients/Application/include -I/home/kinro/project/Patients/Application/Client -I/home/kinro/project/Patients/Application/files -g -std=gnu++23 -fPIC -o Application/src/CMakeFiles/src.dir/App.cpp.o -c /home/kinro/project/Patients/Application/src/App.cpp",
+  "file": "/home/kinro/project/Patients/Application/src/App.cpp",
+  "output": "Application/src/CMakeFiles/src.dir/App.cpp.o"
+},
+{
+  "directory": "/home/kinro/project/Patients/build",
+  "command": "/usr/bin/c++ -Dsrc_EXPORTS -I/home/kinro/project/Patients/Application/include -I/home/kinro/project/Patients/Application/Client -I/home/kinro/project/Patients/Application/files -g -std=gnu++23 -fPIC -o Application/src/CMakeFiles/src.dir/Historyes.cpp.o -c /home/kinro/project/Patients/Application/src/Historyes.cpp",
+  "file": "/home/kinro/project/Patients/Application/src/Historyes.cpp",
+  "output": "Application/src/CMakeFiles/src.dir/Historyes.cpp.o"
+},
+{
+  "directory": "/home/kinro/project/Patients/build",
+  "command": "/usr/bin/c++ -Dsrc_EXPORTS -I/home/kinro/project/Patients/Application/include -I/home/kinro/project/Patients/Application/Client -I/home/kinro/project/Patients/Application/files -g -std=gnu++23 -fPIC -o Application/src/CMakeFiles/src.dir/InputDrugs.cpp.o -c /home/kinro/project/Patients/Application/src/InputDrugs.cpp",
+  "file": "/home/kinro/project/Patients/Application/src/InputDrugs.cpp",
+  "output": "Application/src/CMakeFiles/src.dir/InputDrugs.cpp.o"
 }
 ]

@@ -75,21 +75,25 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Order-only phony target for Server
 
-build cmake_object_order_depends_target_Server: phony || .
+build cmake_object_order_depends_target_Server: phony || cmake_object_order_depends_target_server_src
 
-build Server/CMakeFiles/Server.dir/main.cpp.o: CXX_COMPILER__Server_unscanned_Debug /home/kinro/project/Patients/Server/main.cpp || cmake_object_order_depends_target_Server
-  DEP_FILE = Server/CMakeFiles/Server.dir/main.cpp.o.d
+build Server/CMakeFiles/Server.dir/src/main.cpp.o: CXX_COMPILER__Server_unscanned_Debug /home/kinro/project/Patients/Server/src/main.cpp || cmake_object_order_depends_target_Server
+  DEP_FILE = Server/CMakeFiles/Server.dir/src/main.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -isystem /usr/include/postgresql
+  INCLUDES = -I/home/kinro/project/Patients/Server/include -isystem /usr/include/postgresql
   OBJECT_DIR = Server/CMakeFiles/Server.dir
-  OBJECT_FILE_DIR = Server/CMakeFiles/Server.dir
+  OBJECT_FILE_DIR = Server/CMakeFiles/Server.dir/src
+  TARGET_COMPILE_PDB = Server/CMakeFiles/Server.dir/
+  TARGET_PDB = Server/Server.pdb
 
-build Server/CMakeFiles/Server.dir/DataBaseWorker.cpp.o: CXX_COMPILER__Server_unscanned_Debug /home/kinro/project/Patients/Server/DataBaseWorker.cpp || cmake_object_order_depends_target_Server
-  DEP_FILE = Server/CMakeFiles/Server.dir/DataBaseWorker.cpp.o.d
+build Server/CMakeFiles/Server.dir/src/DataBaseWorker.cpp.o: CXX_COMPILER__Server_unscanned_Debug /home/kinro/project/Patients/Server/src/DataBaseWorker.cpp || cmake_object_order_depends_target_Server
+  DEP_FILE = Server/CMakeFiles/Server.dir/src/DataBaseWorker.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -isystem /usr/include/postgresql
+  INCLUDES = -I/home/kinro/project/Patients/Server/include -isystem /usr/include/postgresql
   OBJECT_DIR = Server/CMakeFiles/Server.dir
-  OBJECT_FILE_DIR = Server/CMakeFiles/Server.dir
+  OBJECT_FILE_DIR = Server/CMakeFiles/Server.dir/src
+  TARGET_COMPILE_PDB = Server/CMakeFiles/Server.dir/
+  TARGET_PDB = Server/Server.pdb
 
 
 # =============================================================================
@@ -99,14 +103,15 @@ build Server/CMakeFiles/Server.dir/DataBaseWorker.cpp.o: CXX_COMPILER__Server_un
 #############################################
 # Link the executable Server/Server
 
-build Server/Server: CXX_EXECUTABLE_LINKER__Server_Debug Server/CMakeFiles/Server.dir/main.cpp.o Server/CMakeFiles/Server.dir/DataBaseWorker.cpp.o | /usr/lib/x86_64-linux-gnu/libpq.so
+build Server/Server: CXX_EXECUTABLE_LINKER__Server_Debug Server/CMakeFiles/Server.dir/src/main.cpp.o Server/CMakeFiles/Server.dir/src/DataBaseWorker.cpp.o | /usr/lib/x86_64-linux-gnu/libpq.so Server/src/libserver_src.so || Server/src/libserver_src.so
   FLAGS = -g
-  LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libpq.so
+  LINK_LIBRARIES = -Wl,-rpath,/home/kinro/project/Patients/build/Server/src  /usr/lib/x86_64-linux-gnu/libpq.so  Server/src/libserver_src.so
   OBJECT_DIR = Server/CMakeFiles/Server.dir
   POST_BUILD = :
   PRE_LINK = :
+  TARGET_COMPILE_PDB = Server/CMakeFiles/Server.dir/
   TARGET_FILE = Server/Server
-  TARGET_PDB = Server.dbg
+  TARGET_PDB = Server/Server.pdb
 
 
 #############################################
@@ -133,6 +138,72 @@ build Server/rebuild_cache: phony Server/CMakeFiles/rebuild_cache.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
+# /home/kinro/project/Patients/Server/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for SHARED_LIBRARY target server_src
+
+
+#############################################
+# Order-only phony target for server_src
+
+build cmake_object_order_depends_target_server_src: phony || .
+
+build Server/src/CMakeFiles/server_src.dir/ConnectionHandler.cpp.o: CXX_COMPILER__server_src_unscanned_Debug /home/kinro/project/Patients/Server/src/ConnectionHandler.cpp || cmake_object_order_depends_target_server_src
+  DEFINES = -Dserver_src_EXPORTS
+  DEP_FILE = Server/src/CMakeFiles/server_src.dir/ConnectionHandler.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fPIC
+  INCLUDES = -I/home/kinro/project/Patients/Server/include
+  OBJECT_DIR = Server/src/CMakeFiles/server_src.dir
+  OBJECT_FILE_DIR = Server/src/CMakeFiles/server_src.dir
+  TARGET_COMPILE_PDB = Server/src/CMakeFiles/server_src.dir/
+  TARGET_PDB = Server/src/libserver_src.pdb
+
+
+# =============================================================================
+# Link build statements for SHARED_LIBRARY target server_src
+
+
+#############################################
+# Link the shared library Server/src/libserver_src.so
+
+build Server/src/libserver_src.so: CXX_SHARED_LIBRARY_LINKER__server_src_Debug Server/src/CMakeFiles/server_src.dir/ConnectionHandler.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = Server/src/CMakeFiles/server_src.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  SONAME = libserver_src.so
+  SONAME_FLAG = -Wl,-soname,
+  TARGET_COMPILE_PDB = Server/src/CMakeFiles/server_src.dir/
+  TARGET_FILE = Server/src/libserver_src.so
+  TARGET_PDB = Server/src/libserver_src.pdb
+
+
+#############################################
+# Utility command for edit_cache
+
+build Server/src/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/kinro/project/Patients/build/Server/src && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build Server/src/edit_cache: phony Server/src/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build Server/src/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/kinro/project/Patients/build/Server/src && /usr/bin/cmake --regenerate-during-build -S/home/kinro/project/Patients -B/home/kinro/project/Patients/build
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build Server/src/rebuild_cache: phony Server/src/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
 # /home/kinro/project/Patients/CMakeLists.txt
 # =============================================================================
 
@@ -143,13 +214,16 @@ build Server/rebuild_cache: phony Server/CMakeFiles/rebuild_cache.util
 #############################################
 # Order-only phony target for Client
 
-build cmake_object_order_depends_target_Client: phony || .
+build cmake_object_order_depends_target_Client: phony || cmake_object_order_depends_target_src
 
-build Client/CMakeFiles/Client.dir/main.cpp.o: CXX_COMPILER__Client_unscanned_Debug /home/kinro/project/Patients/Client/main.cpp || cmake_object_order_depends_target_Client
-  DEP_FILE = Client/CMakeFiles/Client.dir/main.cpp.o.d
+build Application/CMakeFiles/Client.dir/src/main.cpp.o: CXX_COMPILER__Client_unscanned_Debug /home/kinro/project/Patients/Application/src/main.cpp || cmake_object_order_depends_target_Client
+  DEP_FILE = Application/CMakeFiles/Client.dir/src/main.cpp.o.d
   FLAGS = -g -std=gnu++23
-  OBJECT_DIR = Client/CMakeFiles/Client.dir
-  OBJECT_FILE_DIR = Client/CMakeFiles/Client.dir
+  INCLUDES = -I/home/kinro/project/Patients/Application/include -I/home/kinro/project/Patients/Application/Client -I/home/kinro/project/Patients/Application/files
+  OBJECT_DIR = Application/CMakeFiles/Client.dir
+  OBJECT_FILE_DIR = Application/CMakeFiles/Client.dir/src
+  TARGET_COMPILE_PDB = Application/CMakeFiles/Client.dir/
+  TARGET_PDB = Application/Client.pdb
 
 
 # =============================================================================
@@ -157,46 +231,141 @@ build Client/CMakeFiles/Client.dir/main.cpp.o: CXX_COMPILER__Client_unscanned_De
 
 
 #############################################
-# Link the executable Client/Client
+# Link the executable Application/Client
 
-build Client/Client: CXX_EXECUTABLE_LINKER__Client_Debug Client/CMakeFiles/Client.dir/main.cpp.o | /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.1
+build Application/Client: CXX_EXECUTABLE_LINKER__Client_Debug Application/CMakeFiles/Client.dir/src/main.cpp.o | /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.1 Application/src/libsrc.so || Application/src/libsrc.so
   FLAGS = -g
-  LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.1  /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.1  /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.1
-  OBJECT_DIR = Client/CMakeFiles/Client.dir
+  LINK_LIBRARIES = -Wl,-rpath,/home/kinro/project/Patients/build/Application/src  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.6.1  /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.6.1  /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.6.1  Application/src/libsrc.so
+  OBJECT_DIR = Application/CMakeFiles/Client.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = Client/Client
-  TARGET_PDB = Client.dbg
+  TARGET_COMPILE_PDB = Application/CMakeFiles/Client.dir/
+  TARGET_FILE = Application/Client
+  TARGET_PDB = Application/Client.pdb
 
 
 #############################################
 # Utility command for edit_cache
 
-build Client/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/kinro/project/Patients/build/Client && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+build Application/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/kinro/project/Patients/build/Application && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build Client/edit_cache: phony Client/CMakeFiles/edit_cache.util
+build Application/edit_cache: phony Application/CMakeFiles/edit_cache.util
 
 
 #############################################
 # Utility command for rebuild_cache
 
-build Client/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/kinro/project/Patients/build/Client && /usr/bin/cmake --regenerate-during-build -S/home/kinro/project/Patients -B/home/kinro/project/Patients/build
+build Application/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/kinro/project/Patients/build/Application && /usr/bin/cmake --regenerate-during-build -S/home/kinro/project/Patients -B/home/kinro/project/Patients/build
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build Client/rebuild_cache: phony Client/CMakeFiles/rebuild_cache.util
+build Application/rebuild_cache: phony Application/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/kinro/project/Patients/Application/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for SHARED_LIBRARY target src
+
+
+#############################################
+# Order-only phony target for src
+
+build cmake_object_order_depends_target_src: phony || .
+
+build Application/src/CMakeFiles/src.dir/App.cpp.o: CXX_COMPILER__src_unscanned_Debug /home/kinro/project/Patients/Application/src/App.cpp || cmake_object_order_depends_target_src
+  DEFINES = -Dsrc_EXPORTS
+  DEP_FILE = Application/src/CMakeFiles/src.dir/App.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fPIC
+  INCLUDES = -I/home/kinro/project/Patients/Application/include -I/home/kinro/project/Patients/Application/Client -I/home/kinro/project/Patients/Application/files
+  OBJECT_DIR = Application/src/CMakeFiles/src.dir
+  OBJECT_FILE_DIR = Application/src/CMakeFiles/src.dir
+  TARGET_COMPILE_PDB = Application/src/CMakeFiles/src.dir/
+  TARGET_PDB = Application/src/libsrc.pdb
+
+build Application/src/CMakeFiles/src.dir/Historyes.cpp.o: CXX_COMPILER__src_unscanned_Debug /home/kinro/project/Patients/Application/src/Historyes.cpp || cmake_object_order_depends_target_src
+  DEFINES = -Dsrc_EXPORTS
+  DEP_FILE = Application/src/CMakeFiles/src.dir/Historyes.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fPIC
+  INCLUDES = -I/home/kinro/project/Patients/Application/include -I/home/kinro/project/Patients/Application/Client -I/home/kinro/project/Patients/Application/files
+  OBJECT_DIR = Application/src/CMakeFiles/src.dir
+  OBJECT_FILE_DIR = Application/src/CMakeFiles/src.dir
+  TARGET_COMPILE_PDB = Application/src/CMakeFiles/src.dir/
+  TARGET_PDB = Application/src/libsrc.pdb
+
+build Application/src/CMakeFiles/src.dir/InputDrugs.cpp.o: CXX_COMPILER__src_unscanned_Debug /home/kinro/project/Patients/Application/src/InputDrugs.cpp || cmake_object_order_depends_target_src
+  DEFINES = -Dsrc_EXPORTS
+  DEP_FILE = Application/src/CMakeFiles/src.dir/InputDrugs.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fPIC
+  INCLUDES = -I/home/kinro/project/Patients/Application/include -I/home/kinro/project/Patients/Application/Client -I/home/kinro/project/Patients/Application/files
+  OBJECT_DIR = Application/src/CMakeFiles/src.dir
+  OBJECT_FILE_DIR = Application/src/CMakeFiles/src.dir
+  TARGET_COMPILE_PDB = Application/src/CMakeFiles/src.dir/
+  TARGET_PDB = Application/src/libsrc.pdb
+
+
+# =============================================================================
+# Link build statements for SHARED_LIBRARY target src
+
+
+#############################################
+# Link the shared library Application/src/libsrc.so
+
+build Application/src/libsrc.so: CXX_SHARED_LIBRARY_LINKER__src_Debug Application/src/CMakeFiles/src.dir/App.cpp.o Application/src/CMakeFiles/src.dir/Historyes.cpp.o Application/src/CMakeFiles/src.dir/InputDrugs.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = Application/src/CMakeFiles/src.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  SONAME = libsrc.so
+  SONAME_FLAG = -Wl,-soname,
+  TARGET_COMPILE_PDB = Application/src/CMakeFiles/src.dir/
+  TARGET_FILE = Application/src/libsrc.so
+  TARGET_PDB = Application/src/libsrc.pdb
+
+
+#############################################
+# Utility command for edit_cache
+
+build Application/src/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/kinro/project/Patients/build/Application/src && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build Application/src/edit_cache: phony Application/src/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build Application/src/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/kinro/project/Patients/build/Application/src && /usr/bin/cmake --regenerate-during-build -S/home/kinro/project/Patients -B/home/kinro/project/Patients/build
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build Application/src/rebuild_cache: phony Application/src/CMakeFiles/rebuild_cache.util
 
 # =============================================================================
 # Target aliases.
 
-build Client: phony Client/Client
+build Client: phony Application/Client
 
 build Server: phony Server/Server
+
+build libserver_src.so: phony Server/src/libserver_src.so
+
+build libsrc.so: phony Application/src/libsrc.so
+
+build server_src: phony Server/src/libserver_src.so
+
+build src: phony Application/src/libsrc.so
 
 # =============================================================================
 # Folder targets.
@@ -206,21 +375,35 @@ build Server: phony Server/Server
 #############################################
 # Folder: /home/kinro/project/Patients/build
 
-build all: phony Server/all Client/all
+build all: phony Server/all Application/all
 
 # =============================================================================
 
 #############################################
-# Folder: /home/kinro/project/Patients/build/Client
+# Folder: /home/kinro/project/Patients/build/Application
 
-build Client/all: phony Client/Client
+build Application/all: phony Application/Client Application/src/all
+
+# =============================================================================
+
+#############################################
+# Folder: /home/kinro/project/Patients/build/Application/src
+
+build Application/src/all: phony Application/src/libsrc.so
 
 # =============================================================================
 
 #############################################
 # Folder: /home/kinro/project/Patients/build/Server
 
-build Server/all: phony Server/Server
+build Server/all: phony Server/Server Server/src/all
+
+# =============================================================================
+
+#############################################
+# Folder: /home/kinro/project/Patients/build/Server/src
+
+build Server/src/all: phony Server/src/libserver_src.so
 
 # =============================================================================
 # Built-in targets
@@ -229,14 +412,14 @@ build Server/all: phony Server/Server
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/kinro/project/Patients/CMakeLists.txt /home/kinro/project/Patients/Client/CMakeLists.txt /home/kinro/project/Patients/Server/CMakeLists.txt /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfigDependencies.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLSharedTargets-none.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLSharedTargets.cmake /usr/share/cmake-3.30/Modules/CMakeCInformation.cmake /usr/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU.cmake /usr/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.30/Modules/FindPackageMessage.cmake /usr/share/cmake-3.30/Modules/FindPostgreSQL.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.30/Modules/Platform/Linux.cmake /usr/share/cmake-3.30/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.30/Modules/SelectLibraryConfigurations.cmake CMakeCache.txt CMakeFiles/3.30.3/CMakeCCompiler.cmake CMakeFiles/3.30.3/CMakeCXXCompiler.cmake CMakeFiles/3.30.3/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/kinro/project/Patients/Application/CMakeLists.txt /home/kinro/project/Patients/Application/src/CMakeLists.txt /home/kinro/project/Patients/CMakeLists.txt /home/kinro/project/Patients/Server/CMakeLists.txt /home/kinro/project/Patients/Server/src/CMakeLists.txt /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfigDependencies.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLSharedTargets-none.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLSharedTargets.cmake /usr/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in /usr/share/cmake-3.30/Modules/CMakeCCompilerABI.c /usr/share/cmake-3.30/Modules/CMakeCInformation.cmake /usr/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in /usr/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp /usr/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake /usr/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake /usr/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake /usr/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake /usr/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake /usr/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake /usr/share/cmake-3.30/Modules/CMakeSystem.cmake.in /usr/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake /usr/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /usr/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU.cmake /usr/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /usr/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /usr/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.30/Modules/FindPackageMessage.cmake /usr/share/cmake-3.30/Modules/FindPostgreSQL.cmake /usr/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake /usr/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-Determine-CXX.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.30/Modules/Platform/Linux.cmake /usr/share/cmake-3.30/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.30/Modules/SelectLibraryConfigurations.cmake CMakeCache.txt CMakeFiles/3.30.3/CMakeCCompiler.cmake CMakeFiles/3.30.3/CMakeCXXCompiler.cmake CMakeFiles/3.30.3/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/kinro/project/Patients/CMakeLists.txt /home/kinro/project/Patients/Client/CMakeLists.txt /home/kinro/project/Patients/Server/CMakeLists.txt /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfigDependencies.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLSharedTargets-none.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLSharedTargets.cmake /usr/share/cmake-3.30/Modules/CMakeCInformation.cmake /usr/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU.cmake /usr/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.30/Modules/FindPackageMessage.cmake /usr/share/cmake-3.30/Modules/FindPostgreSQL.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.30/Modules/Platform/Linux.cmake /usr/share/cmake-3.30/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.30/Modules/SelectLibraryConfigurations.cmake CMakeCache.txt CMakeFiles/3.30.3/CMakeCCompiler.cmake CMakeFiles/3.30.3/CMakeCXXCompiler.cmake CMakeFiles/3.30.3/CMakeSystem.cmake: phony
+build /home/kinro/project/Patients/Application/CMakeLists.txt /home/kinro/project/Patients/Application/src/CMakeLists.txt /home/kinro/project/Patients/CMakeLists.txt /home/kinro/project/Patients/Server/CMakeLists.txt /home/kinro/project/Patients/Server/src/CMakeLists.txt /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfigDependencies.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLSharedTargets-none.cmake /usr/lib/x86_64-linux-gnu/cmake/SFML/SFMLSharedTargets.cmake /usr/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in /usr/share/cmake-3.30/Modules/CMakeCCompilerABI.c /usr/share/cmake-3.30/Modules/CMakeCInformation.cmake /usr/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in /usr/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp /usr/share/cmake-3.30/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake /usr/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake /usr/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake /usr/share/cmake-3.30/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake /usr/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake /usr/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake /usr/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake /usr/share/cmake-3.30/Modules/CMakeSystem.cmake.in /usr/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake /usr/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake /usr/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /usr/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake /usr/share/cmake-3.30/Modules/Compiler/GNU.cmake /usr/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /usr/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /usr/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /usr/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.30/Modules/FindPackageMessage.cmake /usr/share/cmake-3.30/Modules/FindPostgreSQL.cmake /usr/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake /usr/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-Determine-CXX.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.30/Modules/Platform/Linux.cmake /usr/share/cmake-3.30/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.30/Modules/SelectLibraryConfigurations.cmake CMakeCache.txt CMakeFiles/3.30.3/CMakeCCompiler.cmake CMakeFiles/3.30.3/CMakeCXXCompiler.cmake CMakeFiles/3.30.3/CMakeSystem.cmake: phony
 
 
 #############################################
