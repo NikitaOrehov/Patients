@@ -65,7 +65,7 @@ public:
         while(true){
             char buffer[1024] = {0};
             int len = read(new_socket, buffer, 1024);
-            if (len > 0){    
+            if (len > 0){   
                 if (!strcmp(buffer, "next")){
                     try{
                         sendPatient();
@@ -74,7 +74,7 @@ public:
                         send(new_socket, error, strlen(error), 0);
                     }
                 }
-                else if (!strstr(buffer, "update")){
+                else if (strstr(buffer, "update") != nullptr){
                     string str(buffer);
                     updateReq(str);
                 }
@@ -98,10 +98,11 @@ public:
     }
 
     void updateReq(string pat){
+        std::cout<<"requare\n";
         string str = pat.substr(6, pat.size() - 6);
         Patient patient(str);
         _patContr.UpdatePatient(patient);
-        const char* buffer = "ok";
-        send(new_socket, buffer, strlen(buffer), 0);
+        // const char* buffer = "ok";
+        // send(new_socket, buffer, strlen(buffer), 0);
     }
 };

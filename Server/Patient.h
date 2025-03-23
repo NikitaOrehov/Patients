@@ -22,6 +22,8 @@ struct Visit{
 };
 
 
+class App;
+
 class Patient{
 private:
     size_t _id;
@@ -32,7 +34,7 @@ private:
     vector<Visit> _History;
 public:
     Patient(int id, string Surname, string Name, string Patron, Gender Gender) : _id(id), _Surname(Surname), _Name(Name), _Patron(Patron), _Gender(Gender){}
-    
+    friend class App;
     
     string Tostr(){
         string res = to_string(_id) + "|" + _Surname + "|" +_Name + "|" + _Patron + "|";
@@ -95,6 +97,8 @@ public:
     void AddVisit(Visit vis){
         _History.push_back(vis);
     }
+
+    Visit pop_back(){return _History.back();}
 
     friend std::ostream& operator<<(std::ostream& os, Patient pat){
         std::cout<<"Surname: "<<pat._Surname<<"\n";

@@ -6,7 +6,7 @@ class Doctor{
 private:
     Patient _patient;
     Visit visit;
-    void SetAnamnes(){
+    string SetAnamnes(){
         const char* patientComplaints[15] = {
             "I'm feeling very tired all the time.",
             "I have a persistent headache.",
@@ -26,22 +26,12 @@ private:
         };
         int random = rand() % 15;
         visit.anamn = patientComplaints[random];
-        std::cout<<"anamnes: "<<visit.anamn<<"\n";
+        return visit.anamn;
     }
 public:
     Doctor() : _patient(1, "Orehov", "Nikita", "Antonobich", man){}
 
-    void AppendDrug(std::string drugsStr){
-        vector<int> drugsInt;
-        string word;
-        for (auto f: drugsStr){
-            if (f == ' '){
-                drugsInt.push_back(std::stoi(word));
-                word.clear();
-            }
-            word += f;
-        }
-        drugsInt.push_back(std::stoi(word));
+    void AppendDrug(vector<int> drugsInt){
         for (auto f: drugsInt){
             switch (f){
                 case 1: visit.drugs.push_back("Aspirin"); break;
@@ -63,11 +53,9 @@ public:
         visit.ms = script;
     }
 
-    void SetPatient(Patient pat){
-        system("cls");
+    std::string SetPatient(Patient pat){
         _patient = pat;
-        std::cout<<pat<<"\n";
-        SetAnamnes();
+        return SetAnamnes();
     }
 
     Patient GetPatient(){ 

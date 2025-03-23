@@ -174,5 +174,29 @@ void DataBaseWorker::Update(Patient pat){
     }
     else std::cout << "Connected to database successfully!" << std::endl;
 
-    string str = "INSERT INTO VISIT ()";
+    string str;
+    Visit vis = pat.pop_back();
+    vector<string> drugs = vis.drugs;
+    string strDrugs;
+    for (int i = 0; i < drugs.size(); i++){
+        str.clear();
+        str = "SELECT id FROM DRUGS WHERE drugs = \'" + drugs[i] + "\';";
+        const char* require = str.c_str();
+        PGresult* res = PQexec(conn, require);
+        if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+            PQfinish(conn);
+            throw "drugs not found in table";
+        }
+        if (PQntuples(res) > 0){
+            strDrugs = strDrugs + PQgetvalue(res, 0, 0) + " ";
+        }
+    }
+    if (strDrugs.size() > 0){
+        strDrugs.pop_back();
+    }
+    str = "INSERT INTO VISIT (anomnes, ms, id_drugs, id_patient) VALUES ";
+    string strValue = "(\'" + vis.anamn + "\', \'" + vis.ms + "\', \'" + strDrugs + "\'," + pat.Tostr()[0] + ");";
+    str += strValue;
+    const char* require = str.c_str();
+    PGresult* res = PQexec(conn, require);
 }

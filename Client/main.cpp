@@ -1,7 +1,10 @@
-#include "ConnectHandler.h"
+#include <SFML/Graphics.hpp>
+#include "Application/App.h"
 
-int main(){
-    ConnectHandler h;
-    h.Connect();
-    return 0;
+
+
+int main() {
+    App a;
+    a.Start();
+    return 0;   
 }
