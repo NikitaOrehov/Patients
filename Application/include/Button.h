@@ -11,7 +11,7 @@ public:
     Button(float x, float y, float width, float height, const std::string& Text) {
         shape.setSize(sf::Vector2(width, height));
         shape.setPosition(x, y);
-        shape.setFillColor(sf::Color::Red);
+        shape.setFillColor(sf::Color(255, 105, 105));
 
         if (!font.loadFromFile("/home/kinro/project/Patients/Application/files/RobotoMono-Italic-VariableFont_wght.ttf")) {
             std::cerr << "Error loading font" << std::endl;

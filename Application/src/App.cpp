@@ -1,7 +1,7 @@
 #include "App.h"
 
-App::App(): _window(sf::RenderWindow(sf::VideoMode(1100, 1500), "Doctor")), _next(100, 900, 150, 50, "next"), _update(800, 900, 150, 50, "update"), _inputHS(30, 550, 500, 150, "HealthScript"), _inputDrugs(750, 500, 200, 30){
-    if (!_font.loadFromFile(path_font_sample)){
+App::App(): _window(sf::RenderWindow(sf::VideoMode(1100, 1500), "Doctor")), _next(100, 900, 150, 50, "next"), _update(850, 900, 150, 50, "update"), _inputHS(30, 550, 500, 150, "HealthScript"), _inputDrugs(850, 500, 200, 30){
+    if (!_font.loadFromFile(path_font_sample)){//500 150
         std::cerr << "Error loading font" << std::endl;
         return;
     }
@@ -69,8 +69,8 @@ App::App(): _window(sf::RenderWindow(sf::VideoMode(1100, 1500), "Doctor")), _nex
 }
 
 void App::Start(){
-    _con.Connect();
     while(_window.isOpen()){
+        _con.Connect();
         sf::Event event;
         while (_window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
@@ -114,6 +114,7 @@ void App::Start(){
 
         }
         updateMain();
+        _con.Disconnect();
     }
 }
 

@@ -1,6 +1,6 @@
 #include "ConnectionHandler.h"
 
-void ConnectionHandler::Connect(){
+void ConnectionHandler::Start(){
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
@@ -20,7 +20,7 @@ void ConnectionHandler::Connect(){
     address.sin_port = htons(PORT);
 
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
-        perror("Ошибка привязки");
+        perror("Ошибка привязки111");
         exit(EXIT_FAILURE);
     }
 
@@ -28,22 +28,19 @@ void ConnectionHandler::Connect(){
         perror("Ошибка при прослушивании");
         exit(EXIT_FAILURE);
     }
+    ReqHandler();
+}
 
-    std::cout << "Ожидание подключения клиента..." << std::endl;
-
+void ConnectionHandler::CheckConnect(){
     if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
         perror("Ошибка при принятии соединения");
         exit(EXIT_FAILURE);
     }
-
-    std::cout << "Клиент подключен!" << std::endl;
-
-    ReqHandler();
-
 }
 
 void ConnectionHandler::ReqHandler(){
     while(true){
+        CheckConnect();
         char buffer[1024] = {0};
         int len = read(new_socket, buffer, 1024);
         if (len > 0){   

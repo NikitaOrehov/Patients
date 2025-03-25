@@ -10,7 +10,7 @@ Histyes::Histyes() : _nextButton(800, 350, 150, 50, "next"), _previousButton(600
     _text.setFont(_font);
     _text.setFillColor(sf::Color::Black);
     _text.setCharacterSize(25);
-    _text.setPosition(600, 70);
+    _text.setPosition(600, 50);
 
     textDrugs.setString("Drugs: ");
     textDrugs.setFont(_font);
@@ -56,7 +56,7 @@ void Histyes::SetVisits(vector<Visit> historyes){
     _shapes = new sf::RectangleShape[_size];
     for (int i = 0; i < _size; i++){
         _shapes[i].setSize(sf::Vector2f(150, 50));
-        _shapes[i].setFillColor(sf::Color::Red);
+        _shapes[i].setFillColor(sf::Color(0, 170, 255));
     }
 }
 
@@ -90,10 +90,10 @@ void Histyes::draw(sf::RenderWindow& window){
     else if (_status == 0) end = 0 + (_status + 1) * 3;
     else end = 0 + (_status + 1) * 3;
     for (int i = 0 + _status * 3; i < end; i++){
-        _shapes[i].setPosition(sf::Vector2f(600, (100 + (i % 3) * 50) + 3 * (i % 3) + 30));
-        string tmpStr = "number " + to_string(i + 1);
+        _shapes[i].setPosition(sf::Vector2f(600, (80 + (i % 3) * 50) + 3 * (i % 3) + 30));
+        string tmpStr = " number " + to_string(i + 1);
         tmp.setString(tmpStr);
-        tmp.setPosition(sf::Vector2f(600, (100 + (i % 3) * 50) + 3 * (i % 3) + 30));
+        tmp.setPosition(sf::Vector2f(600, (81 + (i % 3) * 50) + 3 * (i % 3) + 30 + 1));
         window.draw(_shapes[i]);
         window.draw(tmp);
     }

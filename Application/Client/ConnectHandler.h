@@ -13,7 +13,6 @@ class ConnectHandler{
 private:
     int sock = 0;
 public:
-    
     void Connect(){
         struct sockaddr_in serv_addr;
         char buffer[1024] = {0};
@@ -35,8 +34,6 @@ public:
             std::cout << "Ошибка подключения" << std::endl;
             return;
         }
-
-        std::cout<<"successful connection\n";
     }
 
     void Disconnect(){

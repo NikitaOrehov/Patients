@@ -14,8 +14,14 @@ class ConnectionHandler{
 private:
     PatientController _patContr;  
     int server_fd, new_socket = 0;
+    struct sockaddr_in address;
+    int opt = 1;
+    int addrlen = sizeof(address);
+    char buffer[1024] = {0};
 public:
-    void Connect();
+    void Start();
+
+    void CheckConnect();
 
     void ReqHandler();
 
